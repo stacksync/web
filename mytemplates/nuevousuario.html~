@@ -1,0 +1,36 @@
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta content="IE=edge" http-equiv="X-UA-Compatible">
+	<meta content="width=device-width, initial-scale=1.0" name="viewport">
+	<meta content="" name="description">
+	<meta content="" name="author">
+	<link href="../../docs-assets/ico/favicon.png" rel="shortcut icon">
+
+	<title>Proyecto grado</title>
+
+	<link rel="stylesheet" href="{{STATIC_URL}}css/bootstrap.css">
+	<link rel="stylesheet" href="signin.css">
+</head>
+<body>
+	<div class="container">
+		<div class="col-xs-8">
+			<h1 class="form-signin-heading">Registrar nuevo usuario</h1>
+
+			<form id='formulario' method='post' action=''>{% csrf_token %}
+				
+				<input class="form-control" id="id_username" type="text" autofocus="" required="" placeholder="Nombre de usuario" name="username"> 
+				<input class="form-control" type="password" required="" placeholder="Password" name="Contraseña" id="id_password1"> 
+				<input class="form-control" type="password" required="" placeholder="Password" name="Repite la contraseña" id="id_password2"> 
+
+				<button class="btn btn-lg btn-primary btn-block" type="submit">Registrar</button>
+			</form>
+		</div>
+	</div>
+	
+
+</body>
+</html>
+
+	
+

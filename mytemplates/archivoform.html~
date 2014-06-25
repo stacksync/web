@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head >
+
+	<script src="{{STATIC_URL}}js/bootstrap.file-input.js"></script>
+</head>
+	
+<body>
+	<form id='formulario' method='post' enctype='multipart/form-data' action=''>{% csrf_token %}
+		<input class="btn-primary" type="file" id="file" autofocus="" required="" placeholder="files" name="files" title="+ add file"> 	
+	</form>
+
+
+	<script type="text/javascript">
+    		document.getElementById("file").onchange = function() {
+    			document.getElementById("formulario").submit();
+		}
+  	</script>
+	<script type="text/javascript">
+    		$(document).ready(function(){$('input[type=file]').bootstrapFileInput();});
+  	</script>
+
+	
+</body>
+</html>

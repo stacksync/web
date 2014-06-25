@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head >
+	<meta charset="utf-8">
+	<meta content="IE=edge" http-equiv="X-UA-Compatible">
+	<meta content="width=device-width, initial-scale=1.0" name="viewport">
+	<meta content="" name="description">
+	<meta content="Juan Jose Linares Flores" name="author">
+	<meta content="juanjoolinares@gmail.com" name="contact">
+	<link href="{{STATIC_URL}}images/logo2.png" rel="shortcut icon">
+
+	<title>Proyecto - {% block titulo %}{% endblock %}</title>
+
+	<!-- CSS de Bootstrap -->
+	<link rel="stylesheet" href="{{STATIC_URL}}css/bootstrap.css"></link>
+	<link rel="stylesheet" href="{{STATIC_URL}}css/dropzone.css"></link>
+
+
+	<script src="{{STATIC_URL}}js/jquery-1.11.0.js"></script>
+	<script src="{{STATIC_URL}}js/bootstrap.min.js"></script>
+
+
+	<script src="{{STATIC_URL}}js/jquery.contextmenu.js"></script>
+	<script src="{{STATIC_URL}}js/dropzone.js"></script>
+
+
+	<!-- librerías opcionales que activan el soporte de HTML5 para IE8 -->
+	<!--[if lt IE 9]>
+	<script src="../../assets/js/html5shiv.js"></script>
+	<script src="../../assets/js/respond.min.js"></script>
+	<![endif]-->
+	
+
+	<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+		<div class="container">
+			<div class="navbar-header">
+				<button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse" type="button">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a href="/" ><img src='{{STATIC_URL}}images/logo2.png' alt="some_text" ></a>
+				
+			</div>
+			<div class="collapse navbar-collapse">
+				<ul class="nav navbar-nav">
+					<li>
+					<a href="/">Stack sync</a>
+					</li>
+				</ul>
+				<ul class="nav navbar-nav pull-right">
+					<li>
+					<p class="navbar-text">User: {{user}}</p>
+					</li>
+					<li>
+					<a href="/contact">Contact us</a>
+					</li>
+					<li>
+					<a href="/log_out">Logout</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</head>
+
+<body >
+	<div class="container">
+		{% block encabezado %}{% endblock %}
+	</div>
+	
+	<div class="container">
+		<div align= "center">
+			<img id="imgSwitch" src="{{STATIC_URL}}images/dropfile.jpg" style="display:none">
+		</div>
+		{% block contenido %}{% endblock %}
+	</div> <!— /container —>
+
+	
+	<div id="previews" class="dropzone-previews" ></div>
+	
+		
+	<script>	
+		var doChange = true;
+
+		new Dropzone(document.body, { // Make the whole body a dropzone
+			url: "{% url "stacksyncapp.views.index" %}",
+			previewsContainer: "#previews", // Define the container to display the previews
+			clickable: "#clickable", // Define the element that should be used as click trigger to select files.
+			
+			init: function() {
+				this.on("dragover", function(){$('#imgSwitch').css('display', 'inline')});
+				this.on("dragleave", function(){$('#imgSwitch').css('display', 'none')});
+				this.on("sending", function(file, xhr, formData) {formData.append('csrfmiddlewaretoken', '{{ csrf_token }}');});
+				this.on("complete", function (file) {doChange = false; window.location.reload();});
+				this.on("uploadprogress", function (file) {$(window).bind('beforeunload', function(){ if(doChange) {return 'This page is asking you to confirm that you want to leave: data you have entered may not be saved.';}
+});});
+			}
+		});
+		
+	</script>
+
+	<div id="footer" class="container">
+    		<nav class="navbar navbar-default navbar-fixed-bottom">
+        		<div class="container">
+				<p>Proyecto final grado &copy;2014</p>
+			</div> <!— /container —>
+    		</nav>
+	</div>
+</body>
+
+
+	
+
+</html>
+
+
+
+

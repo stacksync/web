@@ -1,0 +1,10 @@
+from django import template
+register = template.Library()
+
+
+@register.simple_tag
+
+def listsort(archivos, order_by):
+	if order_by == 'name':
+		archivos.reverse()
+	return archivos

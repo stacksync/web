@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang='es'>
+  <head>
+	<title>Lista de archivos de ejemplo</title>
+	<meta charset='utf-8'>
+  </head>
+  <body>
+    <h1>Lista de archivos</h1>
+	{% for elemento in lista %}
+	<ul>
+	  <li><strong>{{elemento.nombre}}</strong></li>
+	</ul>
+	{% endfor %}
+  </body>
+</html>

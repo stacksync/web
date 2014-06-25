@@ -1,0 +1,40 @@
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta content="IE=edge" http-equiv="X-UA-Compatible">
+	<meta content="width=device-width, initial-scale=1.0" name="viewport">
+	<meta content="" name="description">
+	<meta content="" name="author">
+	<link href="../../docs-assets/ico/favicon.png" rel="shortcut icon">
+
+	<title>Stack Sync</title>
+
+	<link rel="stylesheet" href="{{STATIC_URL}}css/bootstrap.css">
+	<link rel="stylesheet" href="signin.css">
+</head>
+<body>
+	
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-6">
+				<img src="{{STATIC_URL}}images/logo.png" alt="stacksync" class="img-rounded">
+			</div>
+			<div class="col-xs-6">
+				<div class="col-xs-6 ">
+					<form id='formulario' class="form-signin" action='' role="form" method='post'>{% csrf_token %}
+						<h1 class="form-signin-heading">Log in</h1>
+
+						<input class="form-control" id="id_username" type="text" autofocus="" required="" placeholder="username" name="username"> 
+						<input class="form-control" type="password" required="" placeholder="Password" name="password" id="id_password"> 
+	
+						<button class="btn btn-lg btn-primary btn-block" type="submit">Go</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+
+</body>
+</html>

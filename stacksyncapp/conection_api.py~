@@ -1,0 +1,178 @@
+
+import json
+import requests
+import os
+from stacksyncapp.archivo import Archivo
+
+
+
+class Conection_api:    
+
+	def Authentication(self, username, password):	
+		url = 'http://cloudspaces.urv.cat:5000/v2.0/tokens'
+		payload = {'auth': {'passwordCredentials': {'username': username, 'password': password}, 'tenantName': username}}
+		headers = {'content-type': 'application/json'}
+
+		r = requests.post(url, data=json.dumps(payload), headers=headers)
+
+		respuesta = r.status_code
+		if respuesta == 200:
+			r.json()
+			json_data = json.loads(r.content)
+			self.token_id = json_data['access']['token']['id']
+
+		return respuesta
+
+	def Metadata(self, token_id):	
+		
+		url = 'https://cloudspaces.urv.cat:8080/v1/AUTH_e685194ffd724f55bd7f6ad14dc5bec7/stacksync/metadata'
+		headers = {'Stacksync-api':'true', 'x-auth-token': token_id}
+
+		r = requests.get(url, headers=headers, verify=False)
+		respuesta = r.status_code
+		
+		folderlist = []
+		filelist = []
+		if respuesta == 200:
+			r.json()
+			json_data = json.loads(r.content)
+					
+			for i in json_data['contents']:
+				archivo = Archivo(i['filename'],i['server_modified'],i['file_id'], i['is_folder'], i['path'], i['size'], i['mimetype'])
+				if i['is_folder'] == True:
+					folderlist.append(archivo)	
+				else:
+					filelist.append(archivo)
+
+		folderlist = folderlist + filelist
+		return folderlist
+
+	def Metadata_focus(self, file_id, token_id):	
+		
+		url = 'https://cloudspaces.urv.cat:8080/v1/AUTH_e685194ffd724f55bd7f6ad14dc5bec7/stacksync/metadata?file_id='+file_id+'&list=true'
+		headers = {'Stacksync-api':'true', 'x-auth-token': token_id}
+
+		r = requests.get(url, headers=headers, verify=False)
+		respuesta = r.status_code
+		
+		folderlist = []
+		filelist = []
+		if respuesta == 200:
+			r.json()
+			json_data = json.loads(r.content)
+			
+			archivo = Archivo(json_data['filename'],json_data['server_modified'],json_data['file_id'], json_data['is_folder'], json_data['path'], json_data['size'],"folder")
+			folderlist.append(archivo)	
+
+			for i in json_data['contents']:
+				archivo = Archivo(i['filename'],i['server_modified'],i['file_id'], i['is_folder'], i['path'], i['size'], i['mimetype'])
+				if i['is_folder'] == True:
+					folderlist.append(archivo)	
+				else:
+					filelist.append(archivo)
+	
+		folderlist = folderlist + filelist		
+		return folderlist
+
+	def UploadFile(self, name, files, parent ,token_id):	
+		if parent == "":
+			url = 'https://cloudspaces.urv.cat:8080/v1/AUTH_e685194ffd724f55bd7f6ad14dc5bec7/stacksync/files?file_name='+name
+		else:
+			url = 'https://cloudspaces.urv.cat:8080/v1/AUTH_e685194ffd724f55bd7f6ad14dc5bec7/stacksync/files?file_name='+name+'&parent='+parent
+
+		headers = {'Stacksync-api':'true', 'x-auth-token': token_id}
+
+		r = requests.put(url, headers=headers, verify=False, data=files)
+
+
+	def Delete(self, file_id, token_id):	
+
+		url = 'https://cloudspaces.urv.cat:8080/v1/AUTH_e685194ffd724f55bd7f6ad14dc5bec7/stacksync/files?file_id='+file_id
+		headers = {'Stacksync-api':'true', 'x-auth-token': token_id}
+
+		r = requests.delete(url, headers=headers, verify=False)
+		
+		lista = self.Metadata(token_id)
+		return lista 
+
+	def DownloadFile(self, file_id, token_id):	
+
+		url = 'https://cloudspaces.urv.cat:8080/v1/AUTH_e685194ffd724f55bd7f6ad14dc5bec7/stacksync/files?file_id='+file_id
+		headers = {'Stacksync-api':'true', 'x-auth-token': token_id}
+		
+		local_filename = "temporaryfile"
+		r = requests.get(url, headers=headers, verify=False, stream=True)
+		with open(local_filename, 'wb') as f:
+        		for chunk in r.iter_content(chunk_size=1024): 
+            			if chunk: # filter out keep-alive new chunks
+                			f.write(chunk)
+                			f.flush()
+		return local_filename
+
+
+	def DownloadPdf(self, file_id, token_id):	
+
+		url = 'https://cloudspaces.urv.cat:8080/v1/AUTH_e685194ffd724f55bd7f6ad14dc5bec7/stacksync/files?file_id='+file_id
+		headers = {'Stacksync-api':'true', 'x-auth-token': token_id}
+		
+		path = 'static/images'
+		local_filename = "temporaryfile.pdf"
+		r = requests.get(url, headers=headers, verify=False, stream=True)
+		with open(os.path.join(path, local_filename), 'wb') as f:
+        		for chunk in r.iter_content(chunk_size=1024): 
+            			if chunk: # filter out keep-alive new chunks
+                			f.write(chunk)
+                			f.flush()
+
+	def DownloadImg(self, file_id, token_id):	
+
+		url = 'https://cloudspaces.urv.cat:8080/v1/AUTH_e685194ffd724f55bd7f6ad14dc5bec7/stacksync/files?file_id='+file_id
+		headers = {'Stacksync-api':'true', 'x-auth-token': token_id}
+		
+		path = 'static/images'
+		local_filename = "temporaryfile"
+		r = requests.get(url, headers=headers, verify=False, stream=True)
+		with open(os.path.join(path, local_filename), 'wb') as f:
+        		for chunk in r.iter_content(chunk_size=1024): 
+            			if chunk: # filter out keep-alive new chunks
+                			f.write(chunk)
+                			f.flush()
+
+
+	def Metadata_file(self, file_id, token_id):	
+		
+		url = 'https://cloudspaces.urv.cat:8080/v1/AUTH_e685194ffd724f55bd7f6ad14dc5bec7/stacksync/metadata?file_id='+file_id+'&list=true'
+		headers = {'Stacksync-api':'true', 'x-auth-token': token_id}
+
+		r = requests.get(url, headers=headers, verify=False)
+		respuesta = r.status_code
+		
+		lista = []
+		if respuesta == 200:
+			r.json()
+			json_data = json.loads(r.content)
+
+			lista.append(json_data['mimetype'])
+			lista.append(json_data['filename'])
+				
+		return lista
+
+
+	def Create_folder(self, folder_name, parent, token_id):	
+		if parent == "":
+			url = 'https://cloudspaces.urv.cat:8080/v1/AUTH_e685194ffd724f55bd7f6ad14dc5bec7/stacksync/files?folder_name='+folder_name
+		else:
+			url = 'https://cloudspaces.urv.cat:8080/v1/AUTH_e685194ffd724f55bd7f6ad14dc5bec7/stacksync/files?folder_name='+folder_name+'&parent='+parent
+
+		headers = {'Stacksync-api':'true', 'x-auth-token': token_id}
+
+		r = requests.post(url, headers=headers, verify=False)
+
+		respuesta = r.status_code
+		if respuesta == 200:
+			r.json()
+			json_data = json.loads(r.content)
+			
+
+		return respuesta
+
