@@ -1,23 +1,23 @@
 
 
 class Breadcrumbs:
-	def __init__(self):        
-		self.breadcrumbs = []
-		
-	def addCrumb(self, crumb): 
-		found = False      
-		for i in self.breadcrumbs:
-			if i.file_id == crumb.file_id:
-				found = True
-				index = self.breadcrumbs.index(i)
-				del self.breadcrumbs[index+1:]
-				break
+    def __init__(self):
+        self.breadcrumbs = []
 
-		if found == False:		
-			self.breadcrumbs.append(crumb)
-		
-		return self.breadcrumbs
+    def add_crumb(self, crumb):
+        found = False
+        for i in self.breadcrumbs:
+            if i.file_id == crumb.file_id:
+                found = True
+                index = self.breadcrumbs.index(i)
+                del self.breadcrumbs[index+1:]
+                break
 
-	def delCrumb(self): 
-		del self.breadcrumbs[:]
-		return self.breadcrumbs
+        if not found:
+            self.breadcrumbs.append(crumb)
+
+        return self.breadcrumbs
+
+    def del_crumb(self):
+        del self.breadcrumbs[:]
+        return self.breadcrumbs

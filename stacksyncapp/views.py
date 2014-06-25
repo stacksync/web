@@ -1,5 +1,5 @@
 
-from stacksyncapp.forms import ContactForm, ArchivoForm
+from stacksyncapp.forms import contact_form, file_form
 from django.contrib.auth import get_user_model
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render_to_response, get_object_or_404
@@ -31,13 +31,13 @@ breadcrumbs = Breadcrumbs()
 @login_required(login_url='/log_in')
 def contact(request): 
 	if request.method == 'POST': 
-		form = ContactForm(request.POST) 
+		form = contact_form(request.POST)
 		if form.is_valid(): 
 			cd = form.cleaned_data 
 			send_mail(cd['subject'], cd['message'], cd.get('email', 'noreply@example.com'), ['juanjoolinares@gmail.com'],) 
 		return render_to_response('thanks.html', {'form': form}, context_instance=RequestContext(request)) 
 	else: 
-		form = ContactForm() 
+		form = contact_form()
 		user = request.user.get_full_name()
 		return render_to_response('contactform.html', {'user':user, 'form': form}, context_instance=RequestContext(request)) 
 
@@ -86,9 +86,9 @@ def index(request):
 	    request.session['last_folder'] = ""
 
 	    user = request.user.get_full_name()
-	    files = connect.Metadata(request.user.get_token_id())
+	    files = connect.metadata(request.user.get_token_id())
 	
-	    pathlist = breadcrumbs.delCrumb()	
+	    pathlist = breadcrumbs.del_crumb()
 
 	    return render_to_response('index.html', {'user':user,'files':files, 'file_id':request.session['last_folder'], 'pathlist':pathlist }, context_instance=RequestContext(request))
 
@@ -99,7 +99,7 @@ def index_focus(request, file_id):
     request.session['last_folder'] = file_id
 
     files = connect.Metadata_focus(file_id, request.user.get_token_id())
-    pathlist = breadcrumbs.addCrumb(files[0])
+    pathlist = breadcrumbs.add_crumb(files[0])
     files.pop(0)
 
     if request.method=='POST':
@@ -149,7 +149,7 @@ def popup_move(request, file_id):
 	base = True
 	
 	if file_id == "root":
-		files = connect.Metadata(request.user.get_token_id())
+		files = connect.metadata(request.user.get_token_id())
 		base = False
 		request.session['popup_folder'] = []
 		request.session['popup_folder'].append("root")
@@ -159,7 +159,7 @@ def popup_move(request, file_id):
 		request.session['popup_folder'].pop()
 		file_back = request.session['popup_folder'][-1]
 		if file_back == "root":
-			files = connect.Metadata(request.user.get_token_id())
+			files = connect.metadata(request.user.get_token_id())
 			base = False
 		else:
 			files = connect.Metadata_focus(file_back, request.user.get_token_id())
