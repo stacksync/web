@@ -1,16 +1,19 @@
 import json
 import requests
+from requests_oauthlib import OAuth1
 import os
 from stacksyncapp.fileMetadata import FileMetadata
 from django.conf import settings
 
 
 class Connection_api:
-    def metadata(self, token_id):
-        url = settings.URL_STACKSYNC + '/metadata'
-        headers = {'Stacksync-api': 'true', 'x-auth-token': token_id}
-
-        r = requests.get(url, headers=headers, verify=False)
+    def metadata(self, user):
+        url = settings.URL_STACKSYNC + '/folder/0'
+        headers = {'Stacksync-api': 'v2'}
+        headeroauth = OAuth1(settings.STACKSYNC_CONSUMER_KEY, settings.STACKSYNC_CONSUMER_SECRET,
+                     user.get_access_token_key(), user.get_access_token_secret(),
+                     signature_type='auth_header', signature_method='PLAINTEXT')
+        r = requests.get(url, auth=headeroauth, headers=headers)
         response = r.status_code
 
         folder_list = []
@@ -20,8 +23,8 @@ class Connection_api:
             json_data = json.loads(r.content)
 
             for item in json_data['contents']:
-                file_metadata = FileMetadata(item['filename'], item['server_modified'], item['file_id'],
-                                             item['is_folder'], item['path'], item['size'], item['mimetype'])
+                file_metadata = FileMetadata(item['filename'], item['modified_at'], item['id'],
+                                             item['is_folder'], item['size'], item['mimetype'])
                 if item['is_folder']:
                     folder_list.append(file_metadata)
                 else:

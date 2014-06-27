@@ -1,49 +1,36 @@
 
-
 from django.contrib.auth.backends import ModelBackend
-from django.contrib.auth import get_user_model
+from models import CustomUser, CustomUserManager
 import json
 import requests
 import datetime
-from requests_oauthlib import OAuth1Session
+import urllib
+from requests_oauthlib import OAuth1
+from urlparse import parse_qs
+from django.conf import settings
 
-User = get_user_model()
 
+
+
+
+# oauth = OAuth1Session(client_key="b3af4e669daf880fb16563e6f36051b105188d413", client_secret="c168e65c18d75b35d8999b534a3776cf")
+# fetch_response = oauth.fetch_request_token(STACKSYNC_REQUEST_TOKEN_ENDPOINT)
+#
+# resource_owner_key = fetch_response.get('oauth_token')
+# resource_owner_secret = fetch_response.get('oauth_token_secret')
+#
+# authorization_url = oauth.authorization_url(STACKSYNC_ACCESS_TOKEN_ENDPOINT)
+# 
+# 
 class myBackend(ModelBackend):
  
-
-    def authenticate(self, username=None, password=None):
-        url = 'http://cloudspaces.urv.cat:5000/v2.0/tokens'
-        payload = {'auth': {'passwordCredentials': {'username': username, 'password': password}, 'tenantName': username}}
-        headers = {'content-type': 'application/json'}
-
-        r = requests.post(url, data=json.dumps(payload), headers=headers)
-
-        response = r.status_code
-
-        if response == 200:
-            r.json()
-            json_data = json.loads(r.content)
-            token_id = json_data['access']['token']['id']
-            date = json_data['access']['token']['expires']
-            expdate = datetime.datetime.strptime(date, "%Y-%m-%dT%H:%M:%SZ")
-
-            try:
-                user = User.objects.get(username=username)
-                user.token_id = token_id
-                user.expdate = expdate
-                user.save()
-
-            except User.DoesNotExist:
-                user = User(username=username, password=password, token_id=token_id, expdate=expdate)
-                user.save()
-
-            return user
-
-        return None
-
-    def get_user(self, user_id):
+    def authenticate(self, username=None, password=None,**kwargs):
         try:
-            return User.objects.get(pk=user_id)
-        except User.DoesNotExist:
-            return None
+            user = CustomUser.objects.get(username=username)
+
+        except CustomUser.DoesNotExist:
+            user = CustomUser(username=username, password=password)
+            user.save()
+            
+        return user
+#    

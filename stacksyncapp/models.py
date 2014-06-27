@@ -5,8 +5,8 @@ from django.db import models
 
 
 class CustomUserManager(BaseUserManager):
-    def create_user(self, username, token_id, expdate, password=None):
-        user = self.model(username = username, token_id = token_id, expdate = expdate)
+    def create_user(self, username, access_token_secret, access_token_key, password=None):
+        user = self.model(username = username, access_token_secret = access_token_secret, access_token_key = access_token_key)
         user.set_password(password)
         user.save(using=self._db)
         # <--snip-->
@@ -15,31 +15,31 @@ class CustomUserManager(BaseUserManager):
 
 class CustomUser(AbstractBaseUser):
     username = models.CharField(max_length=40, unique=True, db_index=True)
-    token_id = models.TextField()
-    expdate = models.DateTimeField()
-	
+    access_token_secret = models.TextField()
+    access_token_key = models.TextField()
+
     objects = CustomUserManager()
 
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['token_id']
 
-	
+
 
     def get_full_name(self):
         # For this case we return email. Could also be User.first_name User.last_name if you have these fields
         return self.username
 
-    def get_token_id(self):
-        return self.token_id
+    def get_access_token_key(self):
+        return self.access_token_key
 	
-    def set_token_id(self, token_id):
-        self.token_id = token_id
+    def set_access_token_key(self, access_token_key):
+        self.access_token_key = access_token_key
 
-    def get_expdate(self):
-        return self.expdate
+    def get_access_token_secret(self):
+        return self.access_token_secret
 	
-    def set_expdate(self, expdate):
-        self.expdate = expdate
+    def set_access_token_secret(self, access_token_secret):
+        self.access_token_secret = access_token_secret
  
     def get_short_name(self):
         # For this case we return email. Could also be User.first_name if you have this field
