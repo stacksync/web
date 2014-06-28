@@ -128,7 +128,7 @@ def index(request):
     if request.method == 'POST':
         files = request.FILES['file']
         filename = files.name
-        connect.upload_file(filename, files, request.session['last_folder'], request.user.get_token_id())
+        connect.upload_file(filename, files, request.session['last_folder'], request.user)
 
         if request.session['last_folder'] == "":
             return HttpResponseRedirect('/')
@@ -161,7 +161,7 @@ def index_focus(request, file_id):
     if request.method == 'POST':
         files = request.FILES['files']
         filename = files.name
-        connect.UploadFile(filename, files, request.session['last_folder'], request.user.get_token_id())
+        connect.upload_file(filename, files, request.session['last_folder'], request.user)
 
         if request.session['last_folder'] == "":
             return HttpResponseRedirect('/')
@@ -176,7 +176,7 @@ def index_focus(request, file_id):
 
 @login_required(login_url='/log_in')
 def delete_file(request, file_id):
-    files = connect.Delete(file_id, request.user.get_token_id())
+    files = connect.delete(file_id, request.user)
     if request.session['last_folder'] == "":
         return HttpResponseRedirect('/')
     else:
@@ -188,7 +188,7 @@ def download_file(request, file_id):
     listData = connect.metadata_file(file_id, request.user)
     mimetype = listData[0]
     file_name = listData[1]
-    files = connect.DownloadFile(file_id, request.user.get_token_id())
+    files = connect.download_file(file_id, request.user)
 
     wrapper = FileWrapper(file(files))
     response = HttpResponse(wrapper, content_type=mimetype)
@@ -199,7 +199,7 @@ def download_file(request, file_id):
 
 @login_required(login_url='/log_in')
 def new_folder(request, folder_name):
-    listData = connect.Create_folder(folder_name, request.session['last_folder'], request.user.get_token_id())
+    listData = connect.create_folder(folder_name, request.session['last_folder'], request.user)
     if request.session['last_folder'] == "":
         return HttpResponseRedirect('/')
     else:
@@ -238,7 +238,7 @@ def popup_move(request, file_id):
 
 @cache_control(no_cache=True, must_revalidate=True, no_store=True)
 def pdf(request, file_id):
-    connect.DownloadPdf(file_id, request.user.get_token_id())
+    connect.download_pdf(file_id, request.user)
     browser = request.META['HTTP_USER_AGENT'].split("/")[-2]
     browser = browser.split(" ")[-1]
     if browser == "Firefox":
@@ -249,7 +249,7 @@ def pdf(request, file_id):
 
 def img(request, file_id):
     user = request.user.get_full_name()
-    connect.DownloadImg(file_id, request.user.get_token_id())
+    connect.download_img(file_id, request.user)
     return render_to_response('img.html', {'user': user, 'file_id': file_id}, context_instance=RequestContext(request))
 
 

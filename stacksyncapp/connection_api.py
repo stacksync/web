@@ -33,134 +33,173 @@ class Connection_api:
         folder_list = folder_list + file_list
         return folder_list
 
-        def metadata_focus(self, file_id, token_id):
+    def metadata_focus(self, folder_id, user):
 
-            url = settings.URL_STACKSYNC + '/metadata?file_id=' + file_id + '&list=true'
-            headers = {'Stacksync-api': 'true', 'x-auth-token': token_id}
+        url = settings.URL_STACKSYNC + '/folder/'+folder_id+'/contents'
+        headers = {'Stacksync-api': 'v2'}
+        headeroauth = OAuth1(settings.STACKSYNC_CONSUMER_KEY, settings.STACKSYNC_CONSUMER_SECRET,
+                 user.get_access_token_key(), user.get_access_token_secret(),
+                 signature_type='auth_header', signature_method='PLAINTEXT')
+        r = requests.get(url, auth=headeroauth, headers=headers)
 
-            r = requests.get(url, headers=headers, verify=False)
-            response = r.status_code
+        response = r.status_code
 
-            folder_list = []
-            file_list = []
-            if response == 200:
-                r.json()
-                json_data = json.loads(r.content)
+        folder_list = []
+        file_list = []
+        if response == 200:
+            r.json()
+            json_data = json.loads(r.content)
 
-                fileMetadata = FileMetadata(json_data['filename'], json_data['server_modified'], json_data['file_id'],
-                                            json_data['is_folder'], json_data['path'], json_data['size'], "folder")
-                folder_list.append(fileMetadata)
+            fileMetadata = FileMetadata(json_data['filename'], json_data['modified_at'], json_data['id'],
+                                        json_data['is_folder'], json_data['size'], json_data['mimetype'] )
+            folder_list.append(fileMetadata)
 
-                for item in json_data['contents']:
-                    fileMetadata = FileMetadata(item['filename'], item['server_modified'], item['file_id'],
-                                                item['is_folder'], item['path'], item['size'], item['mimetype'])
-                    if item['is_folder'] == True:
-                        folder_list.append(fileMetadata)
-                    else:
-                        file_list.append(fileMetadata)
+            for item in json_data['contents']:
+                fileMetadata = FileMetadata(item['filename'], item['modified_at'], item['id'],
+                                            item['is_folder'], item['size'], item['mimetype'])
+                if item['is_folder'] == True:
+                    folder_list.append(fileMetadata)
+                else:
+                    file_list.append(fileMetadata)
 
-            folder_list = folder_list + file_list
-            return folder_list
+        folder_list = folder_list + file_list
+        return folder_list
 
-        def upload_file(self, name, files, parent, token_id):
+    def upload_file(self, name, files, parent, user):
+        headers = {'Stacksync-api': 'v2'}
+        headeroauth = OAuth1(settings.STACKSYNC_CONSUMER_KEY, settings.STACKSYNC_CONSUMER_SECRET,
+                 user.get_access_token_key(), user.get_access_token_secret(),
+                 signature_type='auth_header', signature_method='PLAINTEXT')
+    
+        if parent == "":
+            url = settings.URL_STACKSYNC + '/file?name='+name
+        else:
+            url = settings.URL_STACKSYNC + '/file?name='+name+'&parent='+parent
 
-            if parent == "":
-                url = settings.URL_STACKSYNC + '/files?file_name=' + name
-            else:
-                url = settings.URL_STACKSYNC + '/files?file_name=' + name + '&parent=' + parent
-
-            headers = {'Stacksync-api': 'true', 'x-auth-token': token_id}
-
-            r = requests.put(url, headers=headers, verify=False, data=files)
-
-
-        def delete(self, file_id, token_id):
-
-            url = settings.URL_STACKSYNC + '/files?file_id=' + file_id
-            headers = {'Stacksync-api': 'true', 'x-auth-token': token_id}
-
-            r = requests.delete(url, headers=headers, verify=False)
-
-            flist = self.metadata(token_id)
-            return flist
-
-        def DownloadFile(self, file_id, token_id):
-
-            url = settings.URL_STACKSYNC + '/files?file_id=' + file_id
-            headers = {'Stacksync-api': 'true', 'x-auth-token': token_id}
-
-            local_filename = "temporaryfile"
-            r = requests.get(url, headers=headers, verify=False, stream=True)
-            with open(local_filename, 'wb') as f:
-                for chunk in r.iter_content(chunk_size=1024):
-                    if chunk:  # filter out keep-alive new chunks
-                        f.write(chunk)
-                        f.flush()
-            return local_filename
+        
+      
+        r = requests.post(url,data=files, auth=headeroauth, headers=headers)
 
 
-        def DownloadPdf(self, file_id, token_id):
-
-            url = settings.URL_STACKSYNC + '/files?file_id=' + file_id
-            headers = {'Stacksync-api': 'true', 'x-auth-token': token_id}
-
-            path = 'static/images'
-            local_filename = "temporaryfile.pdf"
-            r = requests.get(url, headers=headers, verify=False, stream=True)
-            with open(os.path.join(path, local_filename), 'wb') as f:
-                for chunk in r.iter_content(chunk_size=1024):
-                    if chunk:  # filter out keep-alive new chunks
-                        f.write(chunk)
-                        f.flush()
-
-        def DownloadImg(self, file_id, token_id):
-
-            url = settings.URL_STACKSYNC + '/files?file_id=' + file_id
-            headers = {'Stacksync-api': 'true', 'x-auth-token': token_id}
-
-            path = 'static/images'
-            local_filename = "temporaryfile"
-            r = requests.get(url, headers=headers, verify=False, stream=True)
-            with open(os.path.join(path, local_filename), 'wb') as f:
-                for chunk in r.iter_content(chunk_size=1024):
-                    if chunk:  # filter out keep-alive new chunks
-                        f.write(chunk)
-                        f.flush()
+    def delete(self, file_id, user):
+        headers = {'Stacksync-api': 'v2'}
+        headeroauth = OAuth1(settings.STACKSYNC_CONSUMER_KEY, settings.STACKSYNC_CONSUMER_SECRET,
+                 user.get_access_token_key(), user.get_access_token_secret(),
+                 signature_type='auth_header', signature_method='PLAINTEXT')
+        
+        url = settings.URL_STACKSYNC + '/file/'+file_id
+        r = requests.delete(url, auth=headeroauth, headers=headers)
 
 
-        def Metadata_file(self, file_id, token_id):
+        flist = self.metadata(user)
+        return flist
 
-            url = settings.URL_STACKSYNC + '/metadata?file_id=' + file_id + '&list=true'
-            headers = {'Stacksync-api': 'true', 'x-auth-token': token_id}
-
-            r = requests.get(url, headers=headers, verify=False)
-            response = r.status_code
-
-            flist = []
-            if response == 200:
-                r.json()
-                json_data = json.loads(r.content)
-
-                flist.append(json_data['mimetype'])
-                flist.append(json_data['filename'])
-
-            return flist
+    def download_file(self, file_id, user):
+        
+        headers = {'Stacksync-api': 'v2'}
+        headeroauth = OAuth1(settings.STACKSYNC_CONSUMER_KEY, settings.STACKSYNC_CONSUMER_SECRET,
+                 user.get_access_token_key(), user.get_access_token_secret(),
+                 signature_type='auth_header', signature_method='PLAINTEXT')
+        
+        url = settings.URL_STACKSYNC + '/file/'+file_id+'/data'
 
 
-        def Create_folder(self, folder_name, parent, token_id):
-            if parent == "":
-                url = settings.URL_STACKSYNC + '/files?folder_name=' + folder_name
-            else:
-                url = settings.URL_STACKSYNC + '/files?folder_name=' + folder_name + '&parent=' + parent
+        local_filename = "temporaryfile"
+        r = requests.get(url, auth=headeroauth, headers=headers, stream=True)
+        with open(local_filename, 'wb') as f:
+            for chunk in r.iter_content(chunk_size=1024):
+                if chunk:  # filter out keep-alive new chunks
+                    f.write(chunk)
+                    f.flush()
+        return local_filename
 
-            headers = {'Stacksync-api': 'true', 'x-auth-token': token_id}
 
-            r = requests.post(url, headers=headers, verify=False)
+    def download_pdf(self, file_id, user):
+        
+        headers = {'Stacksync-api': 'v2'}
+        headeroauth = OAuth1(settings.STACKSYNC_CONSUMER_KEY, settings.STACKSYNC_CONSUMER_SECRET,
+                 user.get_access_token_key(), user.get_access_token_secret(),
+                 signature_type='auth_header', signature_method='PLAINTEXT')
+        
+        url = settings.URL_STACKSYNC + '/file/'+file_id+'/data'
+        r = requests.get(url, auth=headeroauth, headers=headers, stream=True)
+   
 
-            response = r.status_code
-            if response == 200:
-                r.json()
-                json_data = json.loads(r.content)
+        path = 'static/images'
+        local_filename = "temporaryfile.pdf"
+        r = requests.get(url, headers=headers, verify=False, stream=True)
+        with open(os.path.join(path, local_filename), 'wb') as f:
+            for chunk in r.iter_content(chunk_size=1024):
+                if chunk:  # filter out keep-alive new chunks
+                    f.write(chunk)
+                    f.flush()
 
-            return response
+    def download_img(self, file_id, user):
+
+        headers = {'Stacksync-api': 'v2'}
+        headeroauth = OAuth1(settings.STACKSYNC_CONSUMER_KEY, settings.STACKSYNC_CONSUMER_SECRET,
+                 user.get_access_token_key(), user.get_access_token_secret(),
+                 signature_type='auth_header', signature_method='PLAINTEXT')
+        
+        url = settings.URL_STACKSYNC + '/file/'+file_id+'/data'
+        
+        path = 'stacksync/static/images/'
+        local_filename = 'temporaryfile'
+        
+        
+        r = requests.get(url, auth=headeroauth, headers=headers, stream=True)
+        with open(os.path.join(path+ local_filename), 'wb') as f:
+            for chunk in r.iter_content(chunk_size=1024):
+                if chunk:  # filter out keep-alive new chunks
+                    f.write(chunk)
+                    f.flush()
+            
+
+
+    def metadata_file(self, file_id, user):
+        headers = {'Stacksync-api': 'v2'}
+        headeroauth = OAuth1(settings.STACKSYNC_CONSUMER_KEY, settings.STACKSYNC_CONSUMER_SECRET,
+                 user.get_access_token_key(), user.get_access_token_secret(),
+                 signature_type='auth_header', signature_method='PLAINTEXT')
+        
+        #TODO: Review the folder handle
+        url = settings.URL_STACKSYNC + '/file/'+file_id
+
+        r = requests.get(url, auth=headeroauth, headers=headers)
+
+        response = r.status_code
+
+        flist = []
+        if response == 200:
+            r.json()
+            json_data = json.loads(r.content)
+
+            flist.append(json_data['mimetype'])
+            flist.append(json_data['filename'])
+
+        return flist
+
+
+    def create_folder(self, folder_name, parent, user):
+        headers = {'Stacksync-api': 'v2'}
+        headeroauth = OAuth1(settings.STACKSYNC_CONSUMER_KEY, settings.STACKSYNC_CONSUMER_SECRET,
+                 user.get_access_token_key(), user.get_access_token_secret(),
+                 signature_type='auth_header', signature_method='PLAINTEXT')
+        
+        
+        if parent == "":
+            data = {'name':folder_name}
+        else:
+            data = {'name':folder_name, 'parent':parent}
+        
+        data = json.dumps(data)
+        url = settings.URL_STACKSYNC + '/folder'
+        r = requests.post(url,data=data, auth=headeroauth, headers=headers)
+
+        response = r.status_code
+        if response == 200:
+            r.json()
+            json_data = json.loads(r.content)
+
+        return response
 
