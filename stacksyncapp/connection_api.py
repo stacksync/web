@@ -143,7 +143,7 @@ class Connection_api:
         
         url = settings.URL_STACKSYNC + '/file/'+file_id+'/data'
         
-        path = 'stacksync/static/images/'
+        path = 'static/images/'
         local_filename = 'temporaryfile'
         
         
