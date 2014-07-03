@@ -72,9 +72,9 @@
 						{% if file.mimetype|slice:":5" == "image" %}
 							<a href="/img/{{file.file_id}}" ><span class="glyphicon glyphicon-list-alt" ></span> {{file.name|title}}</a>
 						{% elif file.mimetype == "application/pdf" %}
-							<a class="file" href="/pdf/{{file.file_id}}"><span class="glyphicon glyphicon-list-alt"></span> {{file.name|title}}</a>
+							<a class="file" target="_blank" href="/pdf/{{file.file_id}}"><span class="glyphicon glyphicon-list-alt"></span> {{file.name|title}}</a>
 						{% else %}
-							<a href="#" ><span class="glyphicon glyphicon-list-alt" ></span> {{file.name|title}}</a>
+							<a href="/download/{{file.file_id}}" ><span class="glyphicon glyphicon-list-alt" ></span> {{file.name|title}}</a>
 						{% endif %}
 						</td>
 							<td class="showContext" id="{{file.file_id}}"> {{file.size}} bytes</td>

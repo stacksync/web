@@ -1,15 +1,27 @@
 <html>
+ 
+
   <head>
     <title>PDFObject example</title>
     <script type="text/javascript" src="{{STATIC_URL}}js/pdfobject.js"></script>
 	<script type="text/javascript">
-    window.onload = function (){
-      var myPDF = new PDFObject({ url: "{{STATIC_URL}}images/temporaryfile.pdf" }).embed();
-    };
-  </script>
+	window.onload = function(e){ 
+    			var omyFrame = document.getElementById("myFrame");
+     			omyFrame.style.display="block";
+     			omyFrame.name = "{{file_name}}";
+     			omyFrame.src = "{{pdf_content}}"; 
+     			
+	}
+
+  	</script>
   </head>
  
   <body>
+  <iframe id="myFrame" display="block" width=100% height=90% border="none";></iframe>
+ 
+ 
+
+	
     <p>It appears you don't have Adobe Reader or PDF support in this web
     browser. <a href="/download/{{file_id}}">Click here to download the PDF</a></p>
   </body>

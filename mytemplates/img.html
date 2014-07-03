@@ -1,12 +1,23 @@
 {% extends 'base.html' %}
 {% block titulo %}Bienvenido{% endblock %}
+
 {% block encabezado %} 
+	<div class="row">
+	<div class="col-xs-6 col-sm-4 col-md-offset-8">
+		<div class="col-md-1 col-md-offset-2"><button type="button" class="btn btn-primary" onClick="location.href='/download/{{file.file_id}}'" > Download Image</button></div>
+		</div>
+	</div>
 {% endblock %}
 {% block contenido %}
 
 
 <!-- Element to pop up -->
 <div class="container">
-   	<img src='{{STATIC_URL}}images/temporaryfile?lastmod='{{file_id}} alt="some_text" class="img-thumbnail">
+
+	<br>
+   	<img src='{{img}}' class="img-thumbnail">
+   	
+   	
+   	
 </div>
 {% endblock %}
