@@ -82,7 +82,7 @@ class Api:
         r = requests.post(url,data=files, auth=headeroauth, headers=headers)
  
  
-    def delete(self, file_id, access_token_key, access_token_secret):
+    def delete_file(self, file_id, access_token_key, access_token_secret):
         headers = {'Stacksync-api': 'v2'}
         headeroauth = OAuth1(settings.STACKSYNC_CONSUMER_KEY, settings.STACKSYNC_CONSUMER_SECRET,
                  access_token_key, access_token_secret,
@@ -94,7 +94,42 @@ class Api:
  
         flist = self.metadata(access_token_key, access_token_secret)
         return flist
+    def delete_folder(self, folder_id, access_token_key, access_token_secret):
+        headers = {'Stacksync-api': 'v2'}
+        headeroauth = OAuth1(settings.STACKSYNC_CONSUMER_KEY, settings.STACKSYNC_CONSUMER_SECRET,
+                 access_token_key, access_token_secret,
+                 signature_type='auth_header', signature_method='PLAINTEXT')
+        url = settings.URL_STACKSYNC + '/folder/'+folder_id
+        r = requests.delete(url, auth=headeroauth, headers=headers)
  
+        return r.json
+        
+    def rename_folder(self, folder_id, folder_name, access_token_key, access_token_secret):
+        headers = {'Stacksync-api': 'v2'}
+        headeroauth = OAuth1(settings.STACKSYNC_CONSUMER_KEY, settings.STACKSYNC_CONSUMER_SECRET,
+                 access_token_key, access_token_secret,
+                 signature_type='auth_header', signature_method='PLAINTEXT')
+        url = settings.URL_STACKSYNC + '/folder/'+folder_id
+        if not folder_name or folder_name == "":
+            return json.dumps({'error':'nothing to update'})
+        
+        data = json.dumps({'name':folder_name})
+        r = requests.put(url, data=data, auth=headeroauth, headers=headers)
+        return r.content
+    
+    def rename_file(self, file_id, file_name, access_token_key, access_token_secret):
+        headers = {'Stacksync-api': 'v2'}
+        headeroauth = OAuth1(settings.STACKSYNC_CONSUMER_KEY, settings.STACKSYNC_CONSUMER_SECRET,
+                 access_token_key, access_token_secret,
+                 signature_type='auth_header', signature_method='PLAINTEXT')
+        url = settings.URL_STACKSYNC + '/file/'+file_id
+        if not file_name or file_name == "":
+            return json.dumps({'error':'nothing to update'})
+        
+        data = json.dumps({'name':file_name})
+        r = requests.put(url, data=data, auth=headeroauth, headers=headers)
+        return r.content
+    
     def download_file(self, file_id, access_token_key, access_token_secret):
          
         headers = {'Stacksync-api': 'v2'}

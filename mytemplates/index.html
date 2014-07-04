@@ -159,6 +159,8 @@
         },
 	'rename': function (t) {
           var newName = prompt("Enter the new name : ", "new name");
+          document.location.href = '/rename_file/'+t.id+'/'+newName;
+          
         },
 	'move': function (t) {
 	  var str = "root";
@@ -169,10 +171,11 @@
      $('td.showContext2').contextMenu('myMenu2', {
       bindings: {
         'delete': function (t) {
-          document.location.href = '/delete/'+t.id;
+          document.location.href = '/delete_folder/'+t.id;
         },
 	'rename': function (t) {
           var newName = prompt("Enter the new name : ", "new name");
+          document.location.href = '/rename_folder/'+t.id+'/'+newName; 
         },
 	'move': function (t) {
           var str = "root";
@@ -194,7 +197,7 @@
 
 <div class="contextMenu" id="myMenu2">
 	<ul>
-    		<li id="delete"><span class="glyphicon glyphicon-remove" ></span> Delete</li>
+    	<li id="delete"><span class="glyphicon glyphicon-remove" ></span> Delete</li>
 		<li id="rename"><span class="glyphicon glyphicon-pencil" ></span> Rename</li>
 		<li id="move"><span class="glyphicon glyphicon-folder-open" ></span> Move</li>
     	</ul>

@@ -176,7 +176,7 @@ def index_focus(request, file_id):
                                    'pathlist': pathlist}, context_instance=RequestContext(request))
  
 def delete_file(request, file_id):
-    files = connect.delete(file_id, request.session['access_token_key'], request.session['access_token_secret'])
+    files = connect.delete_file(file_id, request.session['access_token_key'], request.session['access_token_secret'])
     if request.session['last_folder'] == "":
         return HttpResponseRedirect('/')
     else:
@@ -200,6 +200,40 @@ def new_folder(request, folder_name):
         return HttpResponseRedirect('/')
     else:
         return HttpResponseRedirect('/focus/' + request.session['last_folder'])
+
+
+def delete_folder(request, folder_id):
+    files = connect.delete_folder(folder_id, request.session['access_token_key'], request.session['access_token_secret'])
+    if request.session['last_folder'] == "":
+        return HttpResponseRedirect('/')
+    else:
+        return HttpResponseRedirect('/focus/' + request.session['last_folder'])
+    
+def rename_folder(request, folder_id, folder_name):
+    response = connect.rename_folder(folder_id, folder_name, request.session['access_token_key'], request.session['access_token_secret'])
+    response = json.loads(response)
+    if 'error' in response:
+        #TODO: Show some message to advert that folder_name is None
+        None
+        
+    if request.session['last_folder'] == "":
+        return HttpResponseRedirect('/')
+    else:
+        return HttpResponseRedirect('/focus/' + request.session['last_folder'])
+    
+    
+def rename_file(request, file_id, file_name):
+    response = connect.rename_folder(file_id, file_name, request.session['access_token_key'], request.session['access_token_secret'])
+    response = json.loads(response)
+    if 'error' in response:
+        #TODO: Show some message to advert that folder_name is None
+        None
+        
+    if request.session['last_folder'] == "":
+        return HttpResponseRedirect('/')
+    else:
+        return HttpResponseRedirect('/focus/' + request.session['last_folder'])
+
 # 
 def popup_move(request, file_id):
     base = True
