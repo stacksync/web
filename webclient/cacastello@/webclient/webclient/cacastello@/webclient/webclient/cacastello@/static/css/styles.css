@@ -1,0 +1,21 @@
+
+/* Borde (standar de bootstrap = #337ab7) para el número de la barra de progreso */
+.progress {
+  position: relative;
+}
+
+.progress div {
+    position: absolute;
+    display: block;
+    width: 100%;
+    color: #ffffff;
+    text-shadow: 1px 0 0 #696969, -1px 0 0 #696969, 0 1px 0 #696969, 0 -1px 0 #696969, 0.5px 0.5px #696969, -0.5px -0.5px 0 #696969, 0.5px -0.5px 0 #696969, -0.5px 0.5px 0 #696969;
+}
+
+.vertical-center {
+  min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+  min-height: 100vh; /* These two lines are counted as one :-)       */
+
+  display: flex;
+  align-items: center;
+}

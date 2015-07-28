@@ -1,3 +1,5 @@
+# -*- encoding: utf-8 -*-
+
 class BreadCrumbs:
     def __init__(self):        
         self.breadcrumbs = []

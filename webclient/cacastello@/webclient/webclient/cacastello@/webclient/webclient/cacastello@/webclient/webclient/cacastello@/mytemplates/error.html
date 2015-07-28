@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+{% load i18n %}
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta content="width=device-width, initial-scale=1" name="viewport">
+	<meta content="Tissat SA" name="author">	
+	<title>{% block titulo %}{% endblock %}</title>	
+	<link href="{{STATIC_URL}}images/logo2.png" rel="shortcut icon">	
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">	
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>	
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>	
+</head>
+{% block contenido %}
+    <div class="container" style="margin-top:2em;">
+        <div class="jumbotron text-center">
+            <center>
+                <h1>{% trans 'Error' %}</h1>
+                <p class="text-primary">{% trans 'Pruebe a repetir la operación, y si el problema persiste, puede contactar con nosotros enviando un correo a <a href="mailto:desarrollotissat@gmail.com">desarrollotissat@gmail.com</a>, explicando el problema. Muchas gracias.' %}</p>
+            </center>
+        </div>
+    </div>
+{% endblock %}
+

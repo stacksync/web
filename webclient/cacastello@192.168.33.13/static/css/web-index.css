@@ -1,0 +1,78 @@
+.jgrowl-success {
+    background: green !important;
+    font-size: 1.4em;
+}
+
+.jgrowl-error {
+    background: orangered !important;
+    font-size: 1.4em;
+}
+
+.jgrowl-warnning {
+    background: rgb(205, 228, 0) !important;
+    color: black;
+    font-size: 1.4em;
+}
+
+.quota{
+    color: #ffffff;
+    font-size: 1.2em;
+    font-weight: bold;
+    padding-left: 0.5em;
+}
+
+#upload-files
+{
+	display:none;
+}
+
+#div-status-files
+{
+	width: 100%;
+	height: 2em;	
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+#status-files.progress-bar
+{
+	width: 100%;
+	height: 1.5em;
+	visibility: hidden;
+	transition: initial;
+}
+
+#myTable td.showContext2.sharedFolder
+{
+	background-color:rgb(255, 255, 223)
+}
+
+/* rgba(15, 124, 231, 0.32) */
+#myTable tr.selected td.showContext
+{
+    background-color: rgba(145, 185, 225, 0.40);
+}
+#myTable tr.selected td.showContext2
+{
+    background-color: rgba(145, 185, 225, 0.40);
+}
+
+span.glyphicon.glyphicon-folder-close, span.glyphicon.glyphicon-list-alt
+{
+	margin-right: 0.5em;
+}
+
+#borrar button
+{
+	background-color: rgb(249, 150, 150);
+}
+
+#select_lang
+{
+	text-transform: capitalize;
+}
+
+table.metadaFiles
+{
+	display: block;
+}

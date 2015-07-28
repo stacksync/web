@@ -1,6 +1,8 @@
-from django.forms import ModelForm
+# -*- encoding: utf-8 -*-
+
+#from django.forms import ModelForm
 from django import forms
-from django.contrib.auth.models import User
+#from django.contrib.auth.models import User
 
 
 class contact_form(forms.Form):

@@ -1,0 +1,408 @@
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Isaac Gallart Bochons <igallart@tissat.es>, 2014.
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-05-05 10:30+0000\n"
+"PO-Revision-Date: 2014-12-15 14:11+0100\n"
+"Last-Translator: Isaac Gallart Bochons <igallart@tissat.es>\n"
+"Language-Team: Spanish <kde-i18n-doc@kde.org>\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Lokalize 1.5\n"
+
+#: mytemplates/404.html:9
+msgid "error404"
+msgstr "¡Error 404!"
+
+#: mytemplates/404.html:10
+msgid "404text"
+msgstr "Page not found"
+
+#: mytemplates/404.html:13 mytemplates/500.html:13 mytemplates/base.html:59
+#: mytemplates/base.html.py:62 mytemplates/base.html:167
+#: mytemplates/contactform.html:10 mytemplates/index.html:256
+msgid "Contact us"
+msgstr "Contact us"
+
+#: mytemplates/404.html:14 mytemplates/500.html:14
+msgid "Home"
+msgstr "Home"
+
+#: mytemplates/500.html:9
+msgid "error500"
+msgstr "¡Error 500!"
+
+#: mytemplates/500.html:10
+msgid "500text"
+msgstr "Internal server error"
+
+#: mytemplates/base.html:56
+msgid "of"
+msgstr "of"
+
+#: mytemplates/base.html:56
+msgid "used"
+msgstr "used"
+
+#: mytemplates/base.html:66
+msgid "logout"
+msgstr "Logout"
+
+#: mytemplates/base.html:114
+msgid "ENCRYPTION"
+msgstr "ENCRYPTION"
+
+#: mytemplates/base.html:118
+msgid "indev"
+msgstr "This feature is in development. You may suffer an error."
+
+#: mytemplates/base.html:122 mytemplates/index.html:320
+msgid "care"
+msgstr "¡CARE!"
+
+#: mytemplates/base.html:124
+msgid "encryptionmenu"
+msgstr ""
+"The password will not be stored once you close the session. This password "
+"will be used both for <b>encrypt</b> and <b>decrypt</b>."
+
+#: mytemplates/base.html:128
+msgid "enable"
+msgstr "Enable"
+
+#: mytemplates/base.html:134
+msgid "password"
+msgstr "Password"
+
+#: mytemplates/base.html:166 mytemplates/base.html.py:184
+#: mytemplates/index.html:190 mytemplates/index.html.py:202
+#: mytemplates/index.html:213 mytemplates/index.html.py:222
+#: mytemplates/index.html:234 mytemplates/index.html.py:242
+#: mytemplates/index.html:255 mytemplates/index.html.py:273
+msgid "Close"
+msgstr "Close"
+
+#: mytemplates/base.html:171 mytemplates/base.html.py:173
+#: mytemplates/contactform.html:15 mytemplates/contactform.html.py:17
+#: mytemplates/index.html:260 mytemplates/index.html.py:262
+msgid "Subject"
+msgstr ""
+
+#: mytemplates/base.html:177 mytemplates/base.html.py:179
+#: mytemplates/contactform.html:21 mytemplates/contactform.html.py:23
+#: mytemplates/index.html:266 mytemplates/index.html.py:268
+msgid "Message"
+msgstr ""
+
+#: mytemplates/base.html:185 mytemplates/index.html:274
+msgid "Send"
+msgstr ""
+
+#: mytemplates/contactform.html:28
+msgid "Submit"
+msgstr ""
+
+#: mytemplates/forgotten.html:38
+msgid "incorrecto"
+msgstr ""
+
+#: mytemplates/index.html:25
+msgid "Add files"
+msgstr "Add files"
+
+#: mytemplates/index.html:26
+msgid "inf"
+msgstr "Information"
+
+#: mytemplates/index.html:27
+msgid "New Folder"
+msgstr "Create new folder"
+
+#: mytemplates/index.html:28
+msgid "Select All"
+msgstr "Select all"
+
+#: mytemplates/index.html:31
+msgid "delete"
+msgstr "Delete"
+
+#: mytemplates/index.html:37
+msgid "mover"
+msgstr "Move"
+
+#: mytemplates/index.html:42
+msgid "renombrar"
+msgstr "Rename"
+
+#: mytemplates/index.html:47
+msgid "compartir"
+msgstr "Share"
+
+#: mytemplates/index.html:52
+msgid "download"
+msgstr "Download"
+
+#: mytemplates/index.html:83
+msgid "decErrorText"
+msgstr ""
+"<strong>¡Error!</strong> File decryption failed. Have you entered the "
+"correct password?"
+
+#: mytemplates/index.html:91
+msgid "Name"
+msgstr "Name"
+
+#: mytemplates/index.html:94
+msgid "Size"
+msgstr "Size"
+
+#: mytemplates/index.html:97 mytemplates/index.html.py:151
+#, fuzzy
+msgid "Last modified"
+msgstr "Last modified"
+
+#: mytemplates/index.html:144
+msgid "Information"
+msgstr "Information"
+
+#: mytemplates/index.html:150
+#, fuzzy
+msgid "Name:"
+msgstr "Name"
+
+#: mytemplates/index.html:152
+#, fuzzy
+msgid "Version:"
+msgstr "Control Version"
+
+#: mytemplates/index.html:154
+msgid "Shared with:"
+msgstr ""
+
+#: mytemplates/index.html:168 mytemplates/index.html.py:178
+msgid "Delete"
+msgstr "Delete"
+
+#: mytemplates/index.html:169
+msgid "Download"
+msgstr "Download"
+
+#: mytemplates/index.html:170
+#, fuzzy
+msgid "Download encrypted"
+msgstr "Download encrypted"
+
+#: mytemplates/index.html:171 mytemplates/index.html.py:179
+msgid "Rename"
+msgstr "Rename"
+
+#: mytemplates/index.html:172 mytemplates/index.html.py:180
+msgid "Move"
+msgstr "Move"
+
+#: mytemplates/index.html:181
+msgid "Share"
+msgstr "Share"
+
+#: mytemplates/index.html:191
+msgid "Share folder"
+msgstr "Share folder"
+
+#: mytemplates/index.html:195
+msgid "text share"
+msgstr "Please enter the email addresses that the folder will be shared with."
+
+#: mytemplates/index.html:203 mytemplates/index.html.py:223
+msgid "Save changes"
+msgstr "Save changes"
+
+#: mytemplates/index.html:214
+msgid "Rename file"
+msgstr "Rename"
+
+#: mytemplates/index.html:217
+msgid "text long rename"
+msgstr "Please, write the new name"
+
+#: mytemplates/index.html:235
+#, fuzzy
+msgid "New folder"
+msgstr "Create new folder"
+
+#: mytemplates/index.html:238
+msgid "Enter a name for the folder"
+msgstr ""
+
+#: mytemplates/index.html:243
+msgid "Create"
+msgstr ""
+
+#: mytemplates/index.html:290
+msgid "cryptedfileprompt"
+msgstr ""
+"The file you are trying to download is <b>encrypted</b> and you have not set "
+"a password to decrypt it. Please <b>enter a password to decrypt this file</"
+"b>."
+
+#: mytemplates/index.html:303
+msgid "Download anyway"
+msgstr "Download anyway"
+
+#: mytemplates/index.html:322
+msgid "secureDelete"
+msgstr ""
+"You're trying to delete a shared folder. Delete this folder will erase the "
+"shared content."
+
+#: mytemplates/index.html:325
+msgid "secureDelete2"
+msgstr "Are you sure you want to delete this folder?"
+
+#: mytemplates/login.html:24
+msgid "Log in"
+msgstr ""
+
+#: mytemplates/login.html:29
+msgid "Go"
+msgstr ""
+
+#: mytemplates/login.html:30
+msgid "Forgot your password?"
+msgstr ""
+
+#: mytemplates/login.html:33
+msgid "Your username and password didn't match. Please try again."
+msgstr ""
+
+#: mytemplates/restorepassword.html:30
+msgid "Restore Password"
+msgstr ""
+
+#: mytemplates/restorepassword.html:38
+msgid "difieren"
+msgstr ""
+
+#: mytemplates/restorepassword.html:40
+msgid "send"
+msgstr ""
+
+#: mytemplates/thanks.html:10
+msgid "thanks"
+msgstr "Thanks"
+
+#: mytemplates/thanks.html:11
+msgid "safehands"
+msgstr "You are in safe hands"
+
+#: mytemplates/thanks.html:14
+msgid "back"
+msgstr "Back"
+
+#: stacksync/views.py:154 stacksync/views.py:185 stacksync/views.py:214
+#: stacksync/views.py:216 stacksync/views.py:229 stacksync/views.py:231
+#: stacksync/views.py:262 stacksync/views.py:316 stacksync/views.py:320
+#: stacksync/views.py:324 stacksync/views.py:327 stacksync/views.py:389
+#: stacksync/views.py:394 stacksync/views.py:426 stacksync/views.py:434
+msgid "errorGeneric"
+msgstr "There was an error. Try again"
+
+#: stacksync/views.py:165
+msgid "sharedwu"
+msgstr "You can't delete a folder shared with you"
+
+#: stacksync/views.py:186
+msgid "successDelete"
+msgstr "The files have been deleted"
+
+#: stacksync/views.py:212 stacksync/views.py:424
+msgid "nameRepeatFile"
+msgstr ""
+"This name is already used in the same folder. Please use a different one"
+
+#: stacksync/views.py:217
+msgid "successNewFolder"
+msgstr "The folder has been created"
+
+#: stacksync/views.py:232
+msgid "successRename"
+msgstr "The files have been renamed"
+
+#: stacksync/views.py:258
+msgid "nofolders"
+msgstr "There are no folders to move the file"
+
+#: stacksync/views.py:328
+msgid "successShare"
+msgstr "The directory has been shared"
+
+#: stacksync/views.py:395
+msgid "successMoved"
+msgstr "Moved successfully"
+
+#: stacksync/views.py:435
+msgid "successUpload"
+msgstr "The files have been uploaded"
+
+#~ msgid "Configuration"
+#~ msgstr "Configuration"
+
+#~ msgid "Control Version"
+#~ msgstr "Control Version"
+
+#~ msgid "Save"
+#~ msgstr "Save"
+
+#~ msgid "Wellcome"
+#~ msgstr "Wellcome"
+
+#, fuzzy
+#~ msgid "Select Dir"
+#~ msgstr "Select directory"
+
+#~ msgid "storageUsersLimit"
+#~ msgstr ""
+#~ "The file upload has been stopped because there are users who do not have "
+#~ "enough space"
+
+#~ msgid "storageUserLimit"
+#~ msgstr "The file upload has been stopped because there is not enough space"
+
+#~ msgid "User"
+#~ msgstr "User"
+
+#~ msgid "Select directory"
+#~ msgstr "Select directory"
+
+#~ msgid "Informa"
+#~ msgstr "Information"
+
+#~ msgid "borrar"
+#~ msgstr "delete"
+
+#~ msgid "errorCreateFolder"
+#~ msgstr "There was an error while trying to create the directory. Try again"
+
+#~ msgid "createFolderName"
+#~ msgstr "Directory created"
+
+#~ msgid "errorToShowPopup"
+#~ msgstr "There was an error while trying to show the files. Try again"
+
+#~ msgid "errorRenameFolder"
+#~ msgstr "There was an error while trying to rename the directory. Try again"
+
+#~ msgid "renameFolder"
+#~ msgstr "Changed the name of the directory"
+
+#~ msgid "errorMoved"
+#~ msgstr "There was an error while trying to move the file. Try again"
+
+#~ msgid "Folder created"
+#~ msgstr "created"

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+{% load i18n %}
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+	<meta content="width=device-width, initial-scale=1.0" name="viewport">
+	<meta content="" name="description">
+	<link href="{{STATIC_URL}}images/logo2.png" rel="shortcut icon">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="{{STATIC_URL}}css/bootstrap-tagsinput.css">
+	<link rel="stylesheet" href="{{STATIC_URL}}css/jquery.jgrowl.css">
+	<link rel="stylesheet" href="{{STATIC_URL}}css/web-index.css">
+    <script src="{% url 'django.views.i18n.javascript_catalog' %}"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+	<script src="{{STATIC_URL}}js/bootstrap-tagsinput.min.js"></script>
+    <title>StackSync</title>
+
+    <link rel="stylesheet" href="{{STATIC_URL}}css/bootstrap.css">
+</head>
+<body>
+    <div class="container">
+		<div class="row">
+            <div class="col-md-2  col-md-offset-5">
+				<a href="/log_in/" ><img src="{{STATIC_URL}}images/logo.png" alt="stacksync" class="img-rounded">
+				<h1>Stacksync</h1></a>
+			</div>
+            <div class="col-md-4 col-md-offset-4">
+                <form id='form' class="form-signin" action='' role="form" method='post'>{% csrf_token %}
+                    <div hidden="true">
+                    <input id="id_subject" type="text" class="form-control" name="subject" maxlength="100" placeholder="Subject" value="subject" />
+                    <input id="id_message" type="text" class="form-control" name="message" maxlength="100" placeholder="message" value="message" />
+                    </div>
+				    <p><input class="form-control" type="email" required="" placeholder="email" name="email" id="email" value=""></p>
+                    {% if incorrect %}
+                        <p>
+                        {% trans "incorrecto" %}
+                        </p>
+                    {% endif %}
+					<button class="btn btn-lg btn-primary btn-block" type="submit">Restore</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,419 @@
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Isaac Gallart Bochons <igallart@tissat.es>, 2014.
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-05-05 10:30+0000\n"
+"PO-Revision-Date: 2014-12-15 14:11+0100\n"
+"Last-Translator: Isaac Gallart Bochons <igallart@tissat.es>\n"
+"Language-Team: Spanish <kde-i18n-doc@kde.org>\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Lokalize 1.5\n"
+
+#: mytemplates/404.html:9
+msgid "error404"
+msgstr "¡Error 404!"
+
+#: mytemplates/404.html:10
+msgid "404text"
+msgstr "Página no encontrada"
+
+#: mytemplates/404.html:13 mytemplates/500.html:13 mytemplates/base.html:59
+#: mytemplates/base.html.py:62 mytemplates/base.html:167
+#: mytemplates/contactform.html:10 mytemplates/index.html:256
+msgid "Contact us"
+msgstr "Cantáctenos"
+
+#: mytemplates/404.html:14 mytemplates/500.html:14
+msgid "Home"
+msgstr "Inicio"
+
+#: mytemplates/500.html:9
+msgid "error500"
+msgstr "¡Error 500!"
+
+#: mytemplates/500.html:10
+msgid "500text"
+msgstr "Error interno del servidor"
+
+#: mytemplates/base.html:56
+msgid "of"
+msgstr "de"
+
+#: mytemplates/base.html:56
+msgid "used"
+msgstr "usados"
+
+#: mytemplates/base.html:66
+msgid "logout"
+msgstr "Salir"
+
+#: mytemplates/base.html:114
+msgid "ENCRYPTION"
+msgstr "ENCRIPTACIÓN"
+
+#: mytemplates/base.html:118
+msgid "indev_owncloud"
+msgstr ""
+
+#: mytemplates/base.html:118
+msgid "indev"
+msgstr "Esta función está en desarrollo. Puede que experimente algún error."
+
+
+
+#: mytemplates/base.html:122 mytemplates/index.html:320
+msgid "care"
+msgstr "¡ATENCIÓN!"
+
+#: mytemplates/base.html:124
+msgid "encryptionmenu"
+msgstr ""
+"La contraseña no será almacenada una vez cierres la sesión. Esta contraseña "
+"se utilizará tanto para <b>encriptar</b> como para <b>desencriptar</b>."
+
+#: mytemplates/base.html:124
+msgid "owncloudmenu"
+msgstr ""
+"Esta función está en desarrollo. Puede que experimente algún error."
+
+#: mytemplates/base.html:128
+msgid "enable"
+msgstr "Habilitar"
+
+#: mytemplates/base.html:134
+msgid "password"
+msgstr "Contraseña"
+
+#: mytemplates/base.html:166 mytemplates/base.html.py:184
+#: mytemplates/index.html:190 mytemplates/index.html.py:202
+#: mytemplates/index.html:213 mytemplates/index.html.py:222
+#: mytemplates/index.html:234 mytemplates/index.html.py:242
+#: mytemplates/index.html:255 mytemplates/index.html.py:273
+msgid "Close"
+msgstr "Cerrar"
+
+#: mytemplates/base.html:171 mytemplates/base.html.py:173
+#: mytemplates/contactform.html:15 mytemplates/contactform.html.py:17
+#: mytemplates/index.html:260 mytemplates/index.html.py:262
+msgid "Subject"
+msgstr "Asunto"
+
+#: mytemplates/base.html:177 mytemplates/base.html.py:179
+#: mytemplates/contactform.html:21 mytemplates/contactform.html.py:23
+#: mytemplates/index.html:266 mytemplates/index.html.py:268
+msgid "Message"
+msgstr "Mensaje"
+
+#: mytemplates/base.html:185 mytemplates/index.html:274
+msgid "Send"
+msgstr "Enviar"
+
+#: mytemplates/contactform.html:28
+msgid "Submit"
+msgstr "Enviar"
+
+#: mytemplates/forgotten.html:38
+msgid "incorrecto"
+msgstr ""
+
+#: mytemplates/index.html:25
+msgid "Add files"
+msgstr "Añadir ficheros"
+
+#: mytemplates/index.html:26
+msgid "inf"
+msgstr "Información"
+
+#: mytemplates/index.html:27
+msgid "New Folder"
+msgstr "Crear directorio"
+
+#: mytemplates/index.html:28
+msgid "Select All"
+msgstr "Seleccionar todo"
+
+#: mytemplates/index.html:31
+msgid "delete"
+msgstr "Eliminar"
+
+#: mytemplates/index.html:37
+msgid "mover"
+msgstr "Mover"
+
+#: mytemplates/index.html:42
+msgid "renombrar"
+msgstr "Renombrar"
+
+#: mytemplates/index.html:47
+msgid "compartir"
+msgstr "Compartir"
+
+#: mytemplates/index.html:52
+msgid "download"
+msgstr "Descargar"
+
+#: mytemplates/index.html:83
+msgid "decErrorText"
+msgstr ""
+"<strong>¡Error!</strong> El descifrado del archivo ha fallado ¿Estás seguro "
+"que la contraseña que has introducido es correcta?"
+
+#: mytemplates/index.html:91
+msgid "Name"
+msgstr "Nombre"
+
+#: mytemplates/index.html:94
+msgid "Size"
+msgstr "Tamaño"
+
+#: mytemplates/index.html:97 mytemplates/index.html.py:151
+msgid "Last modified"
+msgstr "Última modificación"
+
+#: mytemplates/index.html:144
+msgid "Information"
+msgstr "Información:"
+
+#: mytemplates/index.html:150
+msgid "Name:"
+msgstr "Nombre:"
+
+#: mytemplates/index.html:152
+msgid "Version:"
+msgstr "Control de versiones:"
+
+#: mytemplates/index.html:154
+msgid "Shared with:"
+msgstr "Compartido con:"
+
+#: mytemplates/index.html:168 mytemplates/index.html.py:178
+msgid "Delete"
+msgstr "Eliminar"
+
+#: mytemplates/index.html:169
+msgid "Download"
+msgstr "Descargar"
+
+#: mytemplates/index.html:170
+msgid "Download encrypted"
+msgstr "Descargar encriptado"
+
+#: mytemplates/index.html:171 mytemplates/index.html.py:179
+msgid "Rename"
+msgstr "Renombrar"
+
+#: mytemplates/index.html:172 mytemplates/index.html.py:180
+msgid "Move"
+msgstr "Mover"
+
+#: mytemplates/index.html:181
+msgid "Share"
+msgstr "Compartir"
+
+#: mytemplates/index.html:191
+msgid "Share folder"
+msgstr "Compartir directorio"
+
+#: mytemplates/index.html:195
+msgid "text share"
+msgstr ""
+"Por favor, introduzca las direcciones de email con las que quiera compartir "
+"la carpeta."
+
+#: mytemplates/index.html:203 mytemplates/index.html.py:223
+msgid "Save changes"
+msgstr "Guardar cambios"
+
+#: mytemplates/index.html:214
+msgid "Rename file"
+msgstr "Renombrar"
+
+#: mytemplates/index.html:217
+msgid "text long rename"
+msgstr "Por favor, escriba el nuevo nombre"
+
+#: mytemplates/index.html:235
+msgid "New folder"
+msgstr "Crear directorio"
+
+#: mytemplates/index.html:238
+msgid "Enter a name for the folder"
+msgstr "Introduce un nombre para el directorio"
+
+#: mytemplates/index.html:243
+msgid "Create"
+msgstr "Crear"
+
+#: mytemplates/index.html:290
+msgid "cryptedfileprompt"
+msgstr ""
+"El archivo que intentas descargar está <b>encriptado</b> y no has "
+"establecido una contraseña para desencriptarlo. Por favor, <b>introduce una "
+"contraseña para desencriptar este archivo</b>."
+
+#: mytemplates/index.html:303
+msgid "Download anyway"
+msgstr "Descargar de todas formas"
+
+#: mytemplates/index.html:322
+msgid "secureDelete"
+msgstr ""
+"La carpeta que quieres borrar esta compartida. Si la borras, borrarás el "
+"contenido que ha sido compartido."
+
+#: mytemplates/index.html:325
+msgid "secureDelete2"
+msgstr "¿Seguro que quieres borrar esta carpeta?"
+
+#: mytemplates/login.html:24
+msgid "Log in"
+msgstr "Acceso"
+
+#: mytemplates/login.html:29
+msgid "Go"
+msgstr "Entrar"
+
+#: mytemplates/login.html:30
+msgid "Forgot your password?"
+msgstr "¿Olvidaste tu contraseña?"
+
+#: mytemplates/login.html:33
+msgid "Your username and password didn't match. Please try again."
+msgstr "Tu contraseña y usuario no coinciden. Por favor, inténtalo de nuevo."
+
+#: mytemplates/restorepassword.html:30
+msgid "Restore Password"
+msgstr "Recuperar Contraseña"
+
+#: mytemplates/restorepassword.html:38
+msgid "difieren"
+msgstr ""
+
+#: mytemplates/restorepassword.html:40
+msgid "send"
+msgstr "Enviar"
+
+#: mytemplates/thanks.html:10
+msgid "thanks"
+msgstr "Muchas gracias"
+
+#: mytemplates/thanks.html:11
+msgid "safehands"
+msgstr "Estás en buenas manos"
+
+#: mytemplates/thanks.html:14
+msgid "back"
+msgstr "Atras"
+
+#: stacksync/views.py:154 stacksync/views.py:185 stacksync/views.py:214
+#: stacksync/views.py:216 stacksync/views.py:229 stacksync/views.py:231
+#: stacksync/views.py:262 stacksync/views.py:316 stacksync/views.py:320
+#: stacksync/views.py:324 stacksync/views.py:327 stacksync/views.py:389
+#: stacksync/views.py:394 stacksync/views.py:426 stacksync/views.py:434
+msgid "errorGeneric"
+msgstr "Se ha producido un error. Inténtelo de nuevo"
+
+#: stacksync/views.py:165
+msgid "sharedwu"
+msgstr "No puedes borrar una carpeta que ha sido compartida contigo"
+
+#: stacksync/views.py:186
+msgid "successDelete"
+msgstr "Los archivos han sido eliminados"
+
+#: stacksync/views.py:212 stacksync/views.py:424
+msgid "nameRepeatFile"
+msgstr ""
+"El nombre de este archivo ya existe en la ubicación actual. Utilice otro "
+"nombre por favor"
+
+#: stacksync/views.py:217
+msgid "successNewFolder"
+msgstr "Se ha creado el directorio"
+
+#: stacksync/views.py:232
+msgid "successRename"
+msgstr "Se ha renombrado correctamente"
+
+#: stacksync/views.py:258
+msgid "nofolders"
+msgstr "No hay carpetas donde mover el archivo"
+
+#: stacksync/views.py:328
+msgid "successShare"
+msgstr "Se ha compartido el directorio"
+
+#: stacksync/views.py:395
+msgid "successMoved"
+msgstr "Movido correctamente"
+
+#: stacksync/views.py:435
+msgid "successUpload"
+msgstr "Los ficheros han sido subidos"
+
+msgid "User"
+msgstr "Usuario"
+
+#~ msgid "Configuration"
+#~ msgstr "Configuracion"
+
+#~ msgid "Control Version"
+#~ msgstr "Control de versiones"
+
+#~ msgid "Save"
+#~ msgstr "Guardar"
+
+#~ msgid "Wellcome"
+#~ msgstr "Bienvenido"
+
+#~ msgid "Select Dir"
+#~ msgstr "Seleccionar directorio"
+
+#~ msgid "storageUsersLimit"
+#~ msgstr ""
+#~ "La carga del fichero se ha detenido debido a que hay usuarios que no "
+#~ "tienen espacio suficiente"
+
+#~ msgid "storageUserLimit"
+#~ msgstr ""
+#~ "La carga del fichero se ha detenido debido a que no dispone de espacio "
+#~ "suficiente"
+
+
+
+#~ msgid "Informa"
+#~ msgstr "Información"
+
+#~ msgid "borrar"
+#~ msgstr "Borrar"
+
+#~ msgid "createFolderName"
+#~ msgstr "Se ha creado el directorio"
+
+#~ msgid "errorToShowPopup"
+#~ msgstr ""
+#~ "Se ha producido un error al intentar mostrar los archivos. Inténtelo de "
+#~ "nuevo"
+
+#~ msgid "errorRenameFolder"
+#~ msgstr ""
+#~ "Se ha producido un error al intentar cambiar el nombre del directorio. "
+#~ "Inténtelo de nuevo"
+
+#~ msgid "renameFolder"
+#~ msgstr "Se ha cambiado el nombre del directorio"
+
+#~ msgid "errorMoved"
+#~ msgstr ""
+#~ "Se ha producido un error al intentar mover el archivo. Inténtelo de nuevo"
+
+#~ msgid "Folder created"
+#~ msgstr "Carpeta"
